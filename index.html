@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch con cookies</title>
+</head>
+<body>
+  <h2>Enviar request con cookies</h2>
+  <button id="fetchBtn">Hacer fetch</button>
+  <pre id="output"></pre>
+
+  <script>
+    const url = "https://ejemplo.com/api"; // Cambia por tu URL
+    const output = document.getElementById("output");
+    const btn = document.getElementById("fetchBtn");
+
+    btn.addEventListener("click", async () => {
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          credentials: "include" // Esto permite enviar cookies de sesión
+        });
+
+        const data = await response.text(); // o .json() si devuelve JSON
+        output.textContent = data;
+      } catch (err) {
+        output.textContent = "Error: " + err;
+      }
+    });
+  </script>
+</body>
+</html>
